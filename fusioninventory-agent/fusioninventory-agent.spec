@@ -4,12 +4,12 @@ Group:       Applications/System
 License:     GPLv2+
 URL:         http://fusioninventory.org/
 
-Version:     2.3.8
-Release:     1%{?dist}
+Version:     2.3.10.1
+Release:     2%{?dist}
 Source0:     http://search.cpan.org/CPAN/authors/id/G/GR/GROUSSE/FusionInventory-Agent-%{version}%{?prever}.tar.gz
 
 Source1:   %{name}.cron
-Source2:   %{name}.init
+#Source2:   %{name}.init
 Source3:   %{name}.service
 
 Requires:  perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
@@ -62,6 +62,7 @@ Requires:       perl(Net::CUPS)
 Requires:       perl(Net::SSLeay)
 Requires:       perl(Proc::Daemon)
 Requires:       perl(Proc::PID::File)
+Requires:       perl(Socket::GetAddrInfo)
 
 %description -n perl-FusionInventory-Agent
 Libraries for Fusioninventory agent.
@@ -160,23 +161,10 @@ cat <<EOF | tee %{name}.conf
 # Add tools directory if needed (tw_cli, hpacucli, ipssend, ...)
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 # Global options (debug for verbose log, rpc-trust-localhost for yum-plugin)
-FUSINVOPT="--debug --rpc-trust-localhost"
-# Mode, change to "cron" or "daemon" to activate
-# - none (default on install) no activity
-# - cron (inventory only) use the cron.hourly
-# NB systemd service launcher only use FUSINVOPT and agent.cfg
-OCSMODE[0]=none
-# OCS Inventory or FusionInventory server URI
-# OCSSERVER[0]=your.ocsserver.name
-# OCSSERVER[0]=http://your.ocsserver.name/ocsinventory
-# OCSSERVER[0]=http://your.glpiserveur.name/glpi/plugins/fusioninventory/
-# corresponds with --local=%{_localstatedir}/lib/%{name}
-# OCSSERVER[0]=local
-# Wait before inventory (for cron mode)
-OCSPAUSE[0]=120
-# Administrative TAG (optional, must be filed before first inventory)
-OCSTAG[0]=
+FUSINVOPT="--debug "
+
 EOF
+
 
 
 %build
@@ -280,6 +268,19 @@ install -m 644 -D contrib/yum-plugin/%{name}.conf %{buildroot}%{_sysconfdir}/yum
 
 
 %changelog
+* Tue Aug 5 2014 Marianne Lombard <marianne@tuxette.fr> - 2.3.10.1-2
+- adding missing requires 
+- updating config file
+
+* Mon Aug 4 2014 Marianne Lombard <marianne@tuxette.fr> - 2.3.10.1
+- new version (bug fixes)
+
+* Fri Aug 1 2014 Marianne Lombard <marianne@tuxette.fr> - 2.3.10
+- new version
+
+* Wed Jul 23 2014 Marianne Lombard <marianne@tuxette.fr> - 2.3.9.1
+- new version
+
 * Tue May 20 2014 Marianne Lombard <marianne@tuxette.fr> - 2.3.8-1
 - enhancing spec according to Michael Schwendt review
 - adding missing requires
