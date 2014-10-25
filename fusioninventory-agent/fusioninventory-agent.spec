@@ -4,8 +4,8 @@ Group:       Applications/System
 License:     GPLv2+
 URL:         http://fusioninventory.org/
 
-Version:     2.3.10.1
-Release:     2%{?dist}
+Version:     2.3.12
+Release:     1%{?dist}
 Source0:     http://search.cpan.org/CPAN/authors/id/G/GR/GROUSSE/FusionInventory-Agent-%{version}%{?prever}.tar.gz
 
 Source1:   %{name}.cron
@@ -268,6 +268,9 @@ install -m 644 -D contrib/yum-plugin/%{name}.conf %{buildroot}%{_sysconfdir}/yum
 
 
 %changelog
+* Tue Aug 5 2014 Marianne Lombard <marianne@tuxette.fr> - 2.3.12
+- new version 
+
 * Tue Aug 5 2014 Marianne Lombard <marianne@tuxette.fr> - 2.3.10.1-2
 - adding missing requires 
 - updating config file

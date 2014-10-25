@@ -42,11 +42,7 @@ make test
 %{_mandir}/man3/*
 
 %changelog
-<<<<<<< HEAD
 * Wed Jun 11 2014 Marianne Lombard <marianne@tuxette.fr> - 1.0.6-2
-=======
-* Wed June 11 2014 Marianne Lombard <marianne@tuxette.fr> - 1.0.6-2
->>>>>>> 7416ef995db67a7e27a7d97a2cc0d8d6a273af77
 - adding missing buildrequires
 - continuing adapting spec to actul guidelines
 
