@@ -4,8 +4,8 @@ Group:       Applications/System
 License:     GPLv2+
 URL:         http://fusioninventory.org/
 
-Version:     2.3.13
-Release:     2%{?dist}
+Version:     2.3.14
+Release:     1%{?dist}
 Source0:     http://search.cpan.org/CPAN/authors/id/G/GR/GROUSSE/FusionInventory-Agent-%{version}%{?prever}.tar.gz
 
 Source1:   %{name}.cron
@@ -225,8 +225,13 @@ install -m 644 -D contrib/yum-plugin/%{name}.conf %{buildroot}%{_sysconfdir}/yum
 %{_mandir}/man1/fusioninventory-injector*
 %dir %{_localstatedir}/log/%{name}
 %dir %{_localstatedir}/lib/%{name}
+%dir %{_datadir}/fusioninventory
+%dir %{_datadir}/fusioninventory/lib
+%dir %{_datadir}/fusioninventory/lib/FusionInventory
+%dir %{_datadir}/fusioninventory/lib/FusionInventory/Agent
+%dir %{_datadir}/fusioninventory/lib/FusionInventory/Agent/Task
 #excluding sub-packages files
-%exclude %{_datadir}/fusioninventory/lib/FusionInventory/Agent/Task/
+#%exclude %{_datadir}/fusioninventory/lib/FusionInventory/Agent/Task/
 
 
 
@@ -270,7 +275,12 @@ install -m 644 -D contrib/yum-plugin/%{name}.conf %{buildroot}%{_sysconfdir}/yum
 
 
 %changelog
+* Wed Dec 24 2014 Marianne Lombard <marianne@tuxette.fr> - 2.3.14
+- new version
+
 * Mon Dec 15 2014 Marianne Lombard <marianne@tuxette.fr> - 2.3.13
+- new version
+- updating spec according to fedora-review
 
 * Tue Aug 5 2014 Marianne Lombard <marianne@tuxette.fr> - 2.3.12
 - new version 
